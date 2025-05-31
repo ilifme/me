@@ -89,7 +89,10 @@ class _SettingScreenState extends State<SettingScreen> {
             title: 'Tampilan',
             children: [
               ListTile(
-                leading: Icon(Icons.brightness_6_outlined, color: Colors.grey.shade700),
+                leading: Icon(
+                  Icons.brightness_6_outlined,
+                  color: Colors.grey.shade700,
+                ),
                 title: const Text('Mode Gelap'),
                 trailing: Switch(
                   value: _isDarkMode,
@@ -100,7 +103,11 @@ class _SettingScreenState extends State<SettingScreen> {
                       // Anda mungkin perlu menggunakan state management (Provider, Riverpod, etc.)
                       // dan memanggil fungsi untuk mengubah tema aplikasi.
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Mode Gelap ${value ? 'Aktif' : 'Nonaktif'} (Implementasi diperlukan)')),
+                        SnackBar(
+                          content: Text(
+                            'Mode Gelap ${value ? 'Aktif' : 'Nonaktif'} (Implementasi diperlukan)',
+                          ),
+                        ),
                       );
                     });
                   },
@@ -116,36 +123,42 @@ class _SettingScreenState extends State<SettingScreen> {
             children: [
               ListTile(
                 leading: const Icon(Icons.logout, color: Colors.red),
-                title: const Text('Logout', style: TextStyle(color: Colors.red)),
+                title: const Text(
+                  'Logout',
+                  style: TextStyle(color: Colors.red),
+                ),
                 onTap: () => _showLogoutDialog(context),
                 tileColor: Colors.white,
-                shape: RoundedRectangleBorder( // Hanya untuk contoh, bisa dihapus
+                shape: RoundedRectangleBorder(
+                  // Hanya untuk contoh, bisa dihapus
                   borderRadius: BorderRadius.circular(12.0),
                 ),
               ),
             ],
           ),
-
         ],
       ),
     );
   }
 
   // Helper untuk membuat grup pengaturan
-  Widget _buildSettingsSection({required String title, required List<Widget> children}) {
+  Widget _buildSettingsSection({
+    required String title,
+    required List<Widget> children,
+  }) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16.0),
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              spreadRadius: 1,
-              blurRadius: 5,
-            )
-          ]
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 5,
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -161,7 +174,8 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
             ),
           ),
-          ListView( // Gunakan ListView agar bisa ada divider
+          ListView(
+            // Gunakan ListView agar bisa ada divider
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             children: children,
@@ -171,13 +185,20 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 
-
   // Helper untuk membuat item pengaturan standar
-  Widget _buildSettingsTile({required IconData icon, required String title, required VoidCallback onTap}) {
+  Widget _buildSettingsTile({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
     return ListTile(
       leading: Icon(icon, color: Colors.grey.shade700),
       title: Text(title),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+      trailing: const Icon(
+        Icons.arrow_forward_ios,
+        size: 16,
+        color: Colors.grey,
+      ),
       onTap: onTap,
       tileColor: Colors.white,
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_navbar.dart';
 import 'package:me/pages/setting_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -14,13 +15,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _onNavTapped(int index) {
     if (index == 3) {
-      // Arahkan ke halaman Setting saat tab Setting diklik
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const SettingScreen()),
       );
     } else {
-      // Untuk tab lain, update tampilan sesuai index
       setState(() {
         currentIndex = index;
       });
@@ -31,33 +30,51 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        elevation: 0,
-        title: const Text(
-          'OuRecycle',
-          style: TextStyle(color: Colors.white),
-        ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: CircleAvatar(
-              backgroundImage: AssetImage('assets/images/aku.png'),
-            ),
-          ),
-        ],
-      ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          const Text(
-            'Hi, Drupadi 👋',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          const Text(
-            'Let\'s save the environment today!',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
+          // Header hijau dan greeting
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.green,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Selamat Datang King 👋',
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    children: const [
+                      Icon(Icons.person, color: Colors.grey),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'What something new today?',
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
 
           const SizedBox(height: 24),
@@ -71,7 +88,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             child: Row(
               children: [
-                const Icon(Icons.star, color: Colors.white, size: 32),
+                const Icon(
+                  Icons.currency_bitcoin_outlined,
+                  color: Colors.white,
+                  size: 36,
+                ),
                 const SizedBox(width: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,17 +113,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const Spacer(),
                 Container(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.orange,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: const Text(
-                    'Gold 🏆',
-                    style: TextStyle(color: Colors.white),
+                  child: const Row(
+                    children: [
+                      SizedBox(width: 4),
+                      Text('Gold 🏆', style: TextStyle(color: Colors.white)),
+                    ],
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -126,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           const SizedBox(height: 24),
 
-          // Banner or news section
+          // Banner section
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Image.asset('assets/images/banner.png'),
@@ -148,18 +173,20 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: InkWell(
         onTap: () {
-          // Aksi menu bisa ditambahkan di sini
+          // Tambahkan aksi di sini jika diperlukan
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon, size: 36, color: Colors.black54),
             const SizedBox(height: 8),
-            Text(label,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black87,
-                )),
+            Text(
+              label,
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+                color: Colors.black87,
+              ),
+            ),
           ],
         ),
       ),
